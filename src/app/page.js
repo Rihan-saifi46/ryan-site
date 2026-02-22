@@ -1,65 +1,50 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import Image from "next/image";
+import { products } from "@/data/products";
 import { useState, useEffect,useRef  } from "react";
 
-const products = [
-  {
-    id: 1,
-    name: "Hair Loss Tablet",
-    subtitle: "Finasteride 1mg",
-    description: "Clinically proven to halt hair loss in 94% of men. Daily tablet that blocks DHT — the hormone responsible for male pattern baldness.",
-    price: "£25/month",
-    image: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/otal_tab_img.jpg?v=1727183490",
-    badge: "Best Seller",
-  },
-  {
-    id: 2,
-    name: "Minoxidil Spray",
-    subtitle: "5% Minoxidil Solution",
-    description: "Reactivates dormant hair follicles and stimulates new growth. Apply directly to the scalp twice daily for visible results.",
-    price: "£20/month",
-    image: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/minox-s.jpg?v=1730906266",
-    badge: "Popular",
-  },
-  {
-    id: 3,
-    name: "Combination Spray",
-    subtitle: "Finasteride + Minoxidil",
-    description: "The ultimate dual-action treatment combining both active ingredients in one easy spray for maximum results.",
-    price: "£35/month",
-    image: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/hgc_img.jpg?v=1727183490",
-    badge: "Most Effective",
-  },
-  {
-    id: 4,
-    name: "Hair Growth Shampoo",
-    subtitle: "Ketoconazole Formula",
-    description: "Medicated shampoo that reduces scalp inflammation and complements your treatment plan for healthier, fuller hair.",
-    price: "£15/month",
-    image: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/shampoo_img.jpg?v=1727183490",
-    badge: "Add-On",
-  },
-];
-
-// const ambassadors = [
+// const products = [
 //   {
-//     name: "James Lowe",
-//     role: "International Rugby Player",
-//     quote: "Having kept my hair long for a number of years I'm always looking for hassle-free ways to keep it going strong. The range of hair health products helps me do just that.",
-//     image: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/james-profile.png?v=1759769620",
+//     id: 1,
+//     slug: "hair-loss-tablet",   // ✅ ADD THIS
+//     name: "Hair Loss Tablet",
+//     subtitle: "Finasteride 1mg",
+//     description: "Clinically proven to halt hair loss in 94% of men. Daily tablet that blocks DHT — the hormone responsible for male pattern baldness.",
+//     price: "£25/month",
+//     image: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/otal_tab_img.jpg?v=1727183490",
+//     badge: "Best Seller",
 //   },
 //   {
-//     name: "Jamie Laing",
-//     role: "TV & Podcast Host",
-//     quote: "If I didn't use these products then my hair would just go. It's convenient. It's educational. It's amazing!",
-//     image: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/jamie.png?v=1759768565",
+//     id: 2,
+//     slug: "minoxidil-spray",   // ✅ ADD THIS
+//     name: "Minoxidil Spray",
+//     subtitle: "5% Minoxidil Solution",
+//     description: "Reactivates dormant hair follicles and stimulates new growth. Apply directly to the scalp twice daily for visible results.",
+//     price: "£20/month",
+//     image: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/minox-s.jpg?v=1730906266",
+//     badge: "Popular",
 //   },
 //   {
-//     name: "Hamish Watson",
-//     role: "International Rugby Player",
-//     quote: "They're doing great things helping guys take control of their hair loss and hair health — convenient, effective, and backed by science.",
-//     image: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/hamish.png?v=1759768564",
+//     id: 3,
+//     slug: "combination-spray",   // ✅ ADD THIS
+//     name: "Combination Spray",
+//     subtitle: "Finasteride + Minoxidil",
+//     description: "The ultimate dual-action treatment combining both active ingredients in one easy spray for maximum results.",
+//     price: "£35/month",
+//     image: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/hgc_img.jpg?v=1727183490",
+//     badge: "Most Effective",
+//   },
+//   {
+//     id: 4,
+//     slug: "hair-growth-shampoo",   // ✅ ADD THIS
+//     name: "Hair Growth Shampoo",
+//     subtitle: "Ketoconazole Formula",
+//     description: "Medicated shampoo that reduces scalp inflammation and complements your treatment plan for healthier, fuller hair.",
+//     price: "£15/month",
+//     image: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/shampoo_img.jpg?v=1727183490",
+//     badge: "Add-On",
 //   },
 // ];
 
@@ -228,157 +213,11 @@ export default function LandingPage() {
   }
 }
   
-      `}</style>
+      `}</style>      
 
-      {/* Top Banner */}
-      {/* <div style={{ background: "#4100e5", color: "#fff", textAlign: "center", padding: "10px 20px", fontSize: "0.82rem", letterSpacing: "0.1em", textTransform: "uppercase", overflow: "hidden" }}>
-        <span key={bannerIdx} style={{ animation: "fadeIn 0.5s ease" }}>{banners[bannerIdx]}</span>
-      </div> */}
-
-      {/* Navbar */}
-      
-
-      <nav style={{
-    position: "sticky", 
-    top: 0, 
-    zIndex: 1000,
-    // Scroll hone par glassmorphism effect
-    background: scrolled ? "rgba(255, 255, 255, 0.85)" : "#fcfaf9", 
-    backdropFilter: scrolled ? "blur(12px)" : "none",
-    boxShadow: scrolled ? "0 4px 30px rgba(0,0,0,0.03)" : "none",
-    transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-    padding: "0 5%",
-    display: "flex", 
-    alignItems: "center", 
-    justifyContent: "space-between",
-    height: scrolled ? "65px" : "85px", // Dynamic height
-}}>
     
-    {/* LEFT - MENU PILL */}
-    <div 
-        className="nav-pill"
-        style={{
-            background: scrolled ? "#1a1a1a" : "#fff", // Contrast switch on scroll
-            color: scrolled ? "#fff" : "#1a1a1a",
-            padding: "10px 28px",
-            borderRadius: "40px",
-            fontSize: "15px",
-            fontWeight: "600",
-            cursor: "pointer",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
-            transition: "all 0.3s ease",
-            border: "1px solid rgba(0,0,0,0.05)"
-        }}
-        onClick={() => setMenuOpen(!menuOpen)}
-        onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"}
-        onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}
-    >
-        Menu
-    </div>
-
-    {/* CENTER - LOGO */}
-    <div style={{
-        fontFamily: "'Playfair Display', serif", // Consistent with your headings
-        fontSize: scrolled ? "1.5rem" : "1.8rem",
-        fontWeight: "800",
-        letterSpacing: "0.05em",
-        color: "#1a1a1a",
-        transition: "all 0.4s ease",
-        cursor: "pointer"
-    }}>
-        HAIR<span style={{ color: "#4100e5" }}>X</span>
-    </div>
-
-    {/* RIGHT SIDE */}
-    <div style={{ display: "flex", gap: "14px", alignItems: "center" }}>
-        
-        {/* Account Pill */}
-        <div style={{
-            background: "#fff",
-            padding: "10px 24px",
-            borderRadius: "40px",
-            fontSize: "14px",
-            fontWeight: "500",
-            cursor: "pointer",
-            border: "1px solid rgba(0,0,0,0.1)",
-            transition: "all 0.3s ease",
-            display: scrolled ? "none" : "block" // Hide text on scroll for cleaner look
-        }}>
-            Account
-        </div>
-
-        {/* Cart Circle */}
-        <div style={{
-            width: "42px",
-            height: "42px",
-            borderRadius: "50%",
-            background: "#4100e5", // Brighter color for action item
-            color: "#fff",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontWeight: "600",
-            fontSize: "14px",
-            cursor: "pointer",
-            boxShadow: "0 4px 12px rgba(65,0,229,0.2)",
-            transition: "all 0.3s ease"
-        }}
-        onMouseEnter={(e) => e.currentTarget.style.scale = "1.1"}
-        onMouseLeave={(e) => e.currentTarget.style.scale = "1"}
-        >
-            0
-        </div>
-    </div>
-</nav>
-
- {/* Mobile Menu */}
-      {menuOpen && (
-        <div style={{ background: "#fff", padding: "24px 5%", borderBottom: "1px solid #eee", display: "flex", flexDirection: "column", gap: "20px" }}>
-          {["Hair Loss", "Beard Growth", "Consultation", "Our Story", "Blog"].map(l => (
-            <span key={l} style={{ fontSize: "1.1rem", letterSpacing: "0.05em", cursor: "pointer" }}>{l}</span>
-          ))}
-        </div>
-      )}
 
       {/* HERO */}
-      {/* <section style={{ background: "#24272a",  color: "#fff", padding: "0px 5% 0", height: "95vh",width:"98.5vw", position: "relative", display: "flex", alignItems: "center" }}>
-        <div style={{ position: "absolute", inset: 0,  opacity: 0.95 }} />
-        
-        <div className="hero-grid" style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "center", gap: "60px", width: "100%", maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ flex: 1, padding:"40px 0 0 0", }}>
-            <div className="hero-text" style={{ fontSize: "clamp(2.5rem, 5vw, 4.8rem)", lineHeight: 1.1, fontWeight: "bold", marginBottom: "28px" }}>
-              Show hair loss<br />
-              <span style={{ color: "#fff" }}>who's boss</span>
-            </div>
-            <p className="hero-sub" style={{ fontSize: "1.1rem", lineHeight: 1.7, color: "#ccc", marginBottom: "36px", maxWidth: "480px" }}>
-              Combat hair loss with clinically proven treatments. The only UK license holder for the most effective hair loss solutions.
-            </p>
-            <ul style={{ listStyle: "none", marginBottom: "40px", display: "flex", flexDirection: "column", gap: "12px" }} className="hero-sub">
-              {["Results in 3–6 months", "Flexible subscriptions, free delivery*", "UK licensed experts & aftercare team"].map(item => (
-                <li key={item} style={{ display: "flex", alignItems: "center", gap: "10px", color: "#ddd", fontSize: "0.95rem" }}>
-                  <span style={{ color: "#fff", fontSize: "1.2rem" }}>✓</span> {item}
-                </li>
-              ))}
-            </ul>
-            <div className="hero-cta" style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-              <button className="btn-red" style={{ fontSize: "1rem", padding: "16px 36px" }}>Get Started</button>
-              <button className="btn-outline" style={{ borderColor: "#fff", color: "#fff" }} onMouseEnter={e => { e.target.style.background="#fff"; e.target.style.color="#1a1a1a"; }} onMouseLeave={e => { e.target.style.background="transparent"; e.target.style.color="#fff"; }}>
-                Learn More
-              </button>
-            </div>
-            <p style={{ marginTop: "16px", fontSize: "0.78rem", color: "#888" }}>*New customers only. Terms apply.</p>
-          </div>
-
-          <div style={{ flex: 1, position: "relative", alignSelf: "flex-start",  minHeight: "100%", width:"100%", display: "flex", alignItems: "flex-start", justifyContent: "center" }}>
-            <img src="https://cdn.shopify.com/s/files/1/0255/7725/9086/files/hgc_img.jpg?v=1727183490" alt="Hero" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-            
-             <div style={{ position: "absolute", bottom: "120px", left: "-20px", background: "#fff", color: "#111", padding: "14px 21px", boxShadow: "0 8px 32px rgba(0,0,0,0.4)" }}>
-              <div style={{ fontSize: "1.8rem", fontWeight: "bold" }}>400K+</div>
-              <div style={{ fontSize: "0.78rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>Happy Customers</div>
-            </div>
-          </div>
-        </div>
-      </section>  */}
       <section style={{ 
   background: "#1a1d1f", // Deep Matte Black for better contrast
   color: "#fff", 
@@ -560,31 +399,6 @@ export default function LandingPage() {
 </section>
 
       {/* Products */}
-      {/* <section ref={productRef} className="slide-up" style={{ padding: "80px 5%", background: "#f9f5f5" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <h2 style={{ textAlign: "center", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", marginBottom: "16px" }}>Clinically proven treatment plans</h2>
-          <p style={{ textAlign: "center", color: "#666", marginBottom: "56px", fontSize: "1.05rem" }}>Tailored to you, delivered to your door.</p>
-          <div className="products-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "24px" }}>
-            {products.map(p => (
-              <div key={p.id} className="card" style={{ background: "#fff", overflow: "hidden", border: "1px solid #f0e8e8" }}>
-                <div style={{ position: "relative" }}>
-                  <img src={p.image} alt={p.name} style={{ width: "100%", height: "220px", objectFit: "cover", display: "block" }} />
-                  <span style={{ position: "absolute", top: "12px", right: "12px", background: "#e6e6e6", color: "#111", padding: "4px 12px", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>{p.badge}</span>
-                </div>
-                <div style={{ padding: "24px" }}>
-                  <div style={{ fontSize: "0.75rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "#4100e5", marginBottom: "6px" }}>{p.subtitle}</div>
-                  <h3 style={{ fontSize: "1.15rem", fontWeight: "bold", marginBottom: "10px" }}>{p.name}</h3>
-                  <p style={{ fontSize: "0.87rem", color: "#666", lineHeight: 1.6, marginBottom: "20px" }}>{p.description}</p>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <span style={{ fontSize: "1.1rem", fontWeight: "bold", color: "#4100e5" }}>{p.price}</span>
-                    <button className="btn-red" style={{ padding: "10px 15px", fontSize: "0.82rem" }}>Add to Plan</button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
       <section ref={productRef} className="slide-up" style={{ 
   padding: "100px 5%", 
   background: "#fcfaf9", // Slightly warmer off-white
@@ -711,22 +525,24 @@ export default function LandingPage() {
                 <span style={{ fontSize: "1.2rem", fontWeight: "bold", color: "#111" }}>{p.price}</span>
               </div>
               
-              <button style={{ 
-                padding: "12px 20px", 
-                fontSize: "0.85rem",
-                fontWeight: "600",
-                backgroundColor: "#111",
-                color: "#fff",
-                border: "none",
-                borderRadius: "12px",
-                cursor: "pointer",
-                transition: "background 0.2s"
-              }}
-              onMouseOver={(e) => e.target.style.background = "#333"}
-              onMouseOut={(e) => e.target.style.background = "#111"}
-              >
-                Add to Plan
-              </button>
+            <Link href={`/products/${p.slug}`}>
+  <button style={{ 
+    padding: "12px 20px", 
+    fontSize: "0.85rem",
+    fontWeight: "600",
+    backgroundColor: "#111",
+    color: "#fff",
+    border: "none",
+    borderRadius: "12px",
+    cursor: "pointer",
+    transition: "background 0.2s"
+  }}
+  onMouseOver={(e) => e.target.style.background = "#333"}
+  onMouseOut={(e) => e.target.style.background = "#111"}
+  >
+    Add to Plan
+  </button>
+</Link>
             </div>
           </div>
         </div>
@@ -748,95 +564,6 @@ export default function LandingPage() {
 </div>
 
       {/* Tackle Section */}
-     {/* <section ref={tackleRef} className="slide-right" style={{ padding: "80px 5%", background: "#fdfdfd" }}>
-  <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-    
-    Heading Section
-    <div style={{ textAlign: "center", marginBottom: "50px" }}>
-      <h2 style={{ 
-        fontSize: "clamp(2rem, 5vw, 3rem)", 
-        fontWeight: "800", 
-        letterSpacing: "-0.02em",
-        marginBottom: "12px",
-        color: "#1a1a1a" 
-      }}>
-        What's your hair goal?
-      </h2>
-      <p style={{ color: "#666", fontSize: "1.1rem", maxWidth: "500px", margin: "0 auto" }}>
-        Select a concern to unlock your personalized, science-backed treatment plan.
-      </p>
-    </div>
-
-    Grid Section
-    <div style={{ 
-      display: "grid", 
-      gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
-      gap: "30px", 
-      maxWidth: "900px", 
-      margin: "0 auto" 
-    }}>
-      {[
-        { label: "Hair Loss", img: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/tackle1.jpg?v=1724248564" },
-        { label: "Beard Growth", img: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/tackle2.jpg?v=1724248563" },
-      ].map((t, index) => (
-        <div 
-          key={index} 
-          className="tackle-card"
-          style={{ 
-            position: "relative", 
-            borderRadius: "20px", 
-            overflow: "hidden", 
-            cursor: "pointer",
-            aspectRatio: "4/5",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.05)"
-          }}
-        >
-          Image with Zoom Effect
-          <div className="img-container" style={{ width: "100%", height: "100%", transition: "transform 0.5s ease" }}>
-            <img 
-              src={t.img} 
-              alt={t.label} 
-              style={{ width: "100%", height: "100%", objectFit: "cover" }} 
-            />
-          </div>
-
-          Gradient Overlay for Depth
-          <div style={{ 
-            position: "absolute", 
-            inset: 0, 
-            background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%)",
-            zIndex: 1
-          }} />
-
-          Center Label / Pill
-          <div style={{ 
-            position: "absolute", 
-            top: "50%", 
-            left: "50%", 
-            transform: "translate(-50%, -50%)", 
-            zIndex: 2,
-            width: "100%",
-            textAlign: "center"
-          }}>
-            <span style={{ 
-              background: "rgba(255, 255, 255, 0.9)", 
-              backdropFilter: "blur(10px)",
-              padding: "12px 28px", 
-              borderRadius: "50px", 
-              fontSize: "1.1rem", 
-              fontWeight: "600",
-              color: "#000",
-              boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
-              display: "inline-block"
-            }}>
-              {t.label}
-            </span>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section> */}
 <section ref={tackleRef} className="slide-right" style={{ 
   padding: "100px 5%", 
   background: "#fcfaf9", // Consistent warmer background
