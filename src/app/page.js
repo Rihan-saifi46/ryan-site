@@ -5,49 +5,6 @@ import Image from "next/image";
 import { products } from "@/data/products";
 import { useState, useEffect,useRef  } from "react";
 
-// const products = [
-//   {
-//     id: 1,
-//     slug: "hair-loss-tablet",   // ✅ ADD THIS
-//     name: "Hair Loss Tablet",
-//     subtitle: "Finasteride 1mg",
-//     description: "Clinically proven to halt hair loss in 94% of men. Daily tablet that blocks DHT — the hormone responsible for male pattern baldness.",
-//     price: "£25/month",
-//     image: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/otal_tab_img.jpg?v=1727183490",
-//     badge: "Best Seller",
-//   },
-//   {
-//     id: 2,
-//     slug: "minoxidil-spray",   // ✅ ADD THIS
-//     name: "Minoxidil Spray",
-//     subtitle: "5% Minoxidil Solution",
-//     description: "Reactivates dormant hair follicles and stimulates new growth. Apply directly to the scalp twice daily for visible results.",
-//     price: "£20/month",
-//     image: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/minox-s.jpg?v=1730906266",
-//     badge: "Popular",
-//   },
-//   {
-//     id: 3,
-//     slug: "combination-spray",   // ✅ ADD THIS
-//     name: "Combination Spray",
-//     subtitle: "Finasteride + Minoxidil",
-//     description: "The ultimate dual-action treatment combining both active ingredients in one easy spray for maximum results.",
-//     price: "£35/month",
-//     image: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/hgc_img.jpg?v=1727183490",
-//     badge: "Most Effective",
-//   },
-//   {
-//     id: 4,
-//     slug: "hair-growth-shampoo",   // ✅ ADD THIS
-//     name: "Hair Growth Shampoo",
-//     subtitle: "Ketoconazole Formula",
-//     description: "Medicated shampoo that reduces scalp inflammation and complements your treatment plan for healthier, fuller hair.",
-//     price: "£15/month",
-//     image: "https://cdn.shopify.com/s/files/1/0255/7725/9086/files/shampoo_img.jpg?v=1727183490",
-//     badge: "Add-On",
-//   },
-// ];
-
 const faqData = [
   {
     q: "Is hair transplant permanent?",
@@ -80,7 +37,7 @@ export default function LandingPage() {
   const ambassadorRef = useRef(null);
   const [openFAQ, setOpenFAQ] = useState(null);
 
-   const containerRef = useRef(null);
+  const containerRef = useRef(null);
   const [sliderPos, setSliderPos] = useState(50);
 
   const handleMove = (e) => {
@@ -91,17 +48,6 @@ export default function LandingPage() {
     if (percent > 100) percent = 100;
     setSliderPos(percent);
   };
-
-  const banners = [
-    "Save 40% + Free Welcome Pack* — Shop Now",
-    "400,000+ Happy Customers",
-    "UK Licensed Experts & Free Delivery*",
-  ];
-
-  useEffect(() => {
-    const t = setInterval(() => setBannerIdx((i) => (i + 1) % banners.length), 3000);
-    return () => clearInterval(t);
-  }, []);
 
  useEffect(() => {
   const observer = new IntersectionObserver(
@@ -214,8 +160,6 @@ export default function LandingPage() {
 }
   
       `}</style>      
-
-    
 
       {/* HERO */}
       <section style={{ 
@@ -526,7 +470,7 @@ export default function LandingPage() {
               </div>
               
             <Link href={`/products/${p.slug}`}>
-  <button style={{ 
+  <button style={{
     padding: "12px 20px", 
     fontSize: "0.85rem",
     fontWeight: "600",
@@ -686,8 +630,7 @@ export default function LandingPage() {
   </div>
 </section>
 
-      {/* result */}
-       
+      {/* result */}   
    <section style={{
   padding: "120px 5%",
   background: "#fcfaf9", // Consistent warmer background
@@ -849,130 +792,7 @@ export default function LandingPage() {
   </div>
 </section>
 
-      {/* Cost Effective Banner */}
-      {/* <section style={{ background: "#111", color: "#fff", padding: "56px 5%", textAlign: "center" }}>
-        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-          <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.4rem)", marginBottom: "16px", lineHeight: 1.3 }}>
-            Treatment plans up to 50% more cost effective than high street pharmacies and clinics.
-          </h2>
-          <div style={{ display: "flex", justifyContent: "center", gap: "40px", marginTop: "36px", flexWrap: "wrap" }}>
-            {[["94%", "Success Rate"], ["400K+", "Customers"], ["3–6mo", "Results"]].map(([val, label]) => (
-              <div key={label}>
-                <div style={{ fontSize: "2.5rem", fontWeight: "bold" }}>{val}</div>
-                <div style={{ fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.85 }}>{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
-      {/* money back */}
-       {/* <section style={{
-  padding: "100px 5%",
-  background: "#f5f5f5",
-  display: "flex",
-  justifyContent: "center"
-}}>
-
-  <div style={{
-    maxWidth: "1200px",
-    width: "100%",
-    display: "flex",
-    gap: "60px",
-    alignItems: "center"
-  }}>
-
-    LEFT IMAGE
-    <div style={{
-      flex: 1,
-      position: "relative"
-    }}>
-
-      <img 
-        src="https://images.unsplash.com/photo-1588776814546-daab30f310ce"
-        style={{
-          width: "100%",height:"400px",
-          borderRadius: "30px",
-          objectFit: "cover"
-        }}
-      />
-
-      BADGE
-      <div style={{
-        position: "absolute",
-        top: "20px",
-        right: "20px",
-        background: "#4100e5",
-        color: "#fff",
-        width: "140px",
-        height: "140px",
-        borderRadius: "50%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-        fontWeight: "bold",
-        boxShadow: "0 10px 40px rgba(65,0,229,0.3)"
-      }}>
-        <div style={{ fontSize: "14px" }}>Sons promise</div>
-        <div style={{ fontSize: "34px" }}>180</div>
-        <div style={{ fontSize: "16px" }}>days</div>
-      </div>
-
-    </div>
-
-
-    RIGHT TEXT
-    <div style={{ flex: 1 }}>
-
-      <h2 style={{
-        fontSize: "clamp(2rem, 4vw, 3rem)",
-        marginBottom: "20px"
-      }}>
-        Money back guarantee
-      </h2>
-
-      <p style={{
-        color: "#555",
-        lineHeight: "1.7",
-        marginBottom: "20px"
-      }}>
-        Our clinically-backed treatments have been proven to halt hair loss for 94% of men. 
-        That’s most guys. However, this does mean that a small few won’t respond to the treatment.
-      </p>
-
-      <p style={{
-        color: "#555",
-        lineHeight: "1.7",
-        marginBottom: "20px"
-      }}>
-        So... we’ve created The Sons Promise - a results-backed guarantee for new customers who follow 
-        their prescribed treatment for six months.
-      </p>
-
-      <p style={{
-        color: "#555",
-        lineHeight: "1.7",
-        marginBottom: "20px"
-      }}>
-        If you’ve stuck to the plan and still haven’t seen improvement, we’ll give you your money back. 
-        No drama, just bringing back the good hair days.
-      </p>
-
-      <a href="#" style={{
-        color: "#111",
-        textDecoration: "underline",
-        fontWeight: "500"
-      }}>
-        See full terms & conditions
-      </a>
-
-    </div>
-
-  </div>
-
-</section> */}
+      {/* Cost Effective Banner */}  
 <section style={{
   padding: "120px 5%",
   background: "#fcfaf9", // Consistent warmer tone
@@ -1103,80 +923,6 @@ export default function LandingPage() {
 </section>
   
   {/* collage */}
-  {/* <section style={{
-  padding: "100px 5%",
-  background: "#fff",
-  display: "flex",
-  justifyContent: "center"
-}}>
-
-  <div style={{
-    maxWidth: "1200px",
-    width: "100%",
-    display: "flex",
-    gap: "40px"
-  }}>
-
-        RIGHT BIG IMAGE
-    <div style={{ flex: 1 }}>
-
-      <img 
-        src="https://cdn.shopify.com/s/files/1/0255/7725/9086/files/otal_tab_img.jpg?v=1727183490"
-        style={{
-          width: "100%",
-          height: "100%",
-          borderRadius: "20px",
-          objectFit: "cover"
-        }}
-      />
-
-    </div>
-
-    LEFT GRID
-    <div style={{
-      flex: 1,
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: "20px"
-    }}>
-
-      TOP LEFT
-      <img 
-        src="https://cdn.shopify.com/s/files/1/0255/7725/9086/files/hgc_img.jpg?v=1727183490"
-        style={{
-          width: "100%",
-          borderRadius: "20px",
-          objectFit: "cover"
-        }}
-      />
-
-      TOP RIGHT CIRCLE
-      <img 
-        src="https://cdn.shopify.com/s/files/1/0255/7725/9086/files/minox-s.jpg?v=1730906266"
-        style={{
-          width: "100%",
-          borderRadius: "20px",
-          objectFit: "cover"
-        }}
-      />
-
-      BOTTOM WIDE
-      <img 
-        src="https://cdn.shopify.com/s/files/1/0255/7725/9086/files/shampoo_img.jpg?v=1727183490"
-        style={{
-          gridColumn: "span 2",
-          width: "100%",
-          height:"280px",
-          borderRadius: "20px",
-          objectFit: "cover"
-        }}
-      />
-
-    </div>
-
-  </div>
-
-</section> */}
 <section style={{
   padding: "100px 5%",
   background: "#fcfaf9", // Consistent off-white background
@@ -1280,7 +1026,7 @@ export default function LandingPage() {
 </section>
 
       {/* review  */}
-      <section style={{
+<section style={{
   padding: "120px 5%",
   background: "#fff",
   display: "flex",
@@ -1415,158 +1161,6 @@ export default function LandingPage() {
 </section>
 
       {/* faq */}
-{/* <section style={{
-  padding: "100px 5%",
-  background: "#f6f6f6",
-  display: "flex",
-  justifyContent: "center"
-}}>
-
-  <div style={{
-    maxWidth: "1200px",
-    width: "100%",
-    display: "flex",
-    gap: "60px",
-    alignItems: "flex-start"
-  }}>
-
-    LEFT SIDE
-    <div style={{ flex: 1 }}>
-
-      <h2 style={{
-        fontSize: "clamp(2rem,4vw,3rem)",
-        marginBottom: "20px"
-      }}>
-        Have a question ? <br/> We are here to help.
-      </h2>
-
-      <p style={{
-        color: "#555",
-        marginBottom: "30px",
-        lineHeight: "1.6"
-      }}>
-        Check out the most common questions our patients ask. 
-        Still have questions? Contact our support team.
-      </p>
-
-      SUPPORT AVATARS
-      <div style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "-10px",
-        marginBottom: "20px"
-      }}>
-        {[
-          "https://i.pravatar.cc/50?img=1",
-          "https://i.pravatar.cc/50?img=2",
-          "https://i.pravatar.cc/50?img=3",
-          "https://i.pravatar.cc/50?img=4"
-        ].map((img, i) => (
-          <img key={i}
-            src={img}
-            style={{
-              width: "45px",
-              height: "45px",
-              borderRadius: "50%",
-              border: "3px solid #fff",
-              marginLeft: "-10px"
-            }}
-          />
-        ))}
-      </div>
-
-      <p style={{ color: "#333" }}>
-        Our support is available Mon - Fri: 8am–8:30pm
-      </p>
-
-      <p style={{ color: "#888" }}>
-        Average answer time: 24h
-      </p>
-
-    </div>
-
-
-    RIGHT SIDE FAQ
-    <div style={{
-  flex: 1,
-  background: "#fff",
-  borderRadius: "20px",
-  padding: "30px",
-  boxShadow: "0 20px 50px rgba(0,0,0,0.05)"
-}}>
-
-  {[
-    {
-      q: "Is hair transplant permanent?",
-      a: "Yes, transplanted hair is permanent and grows naturally."
-    },
-    {
-      q: "Is the procedure painful?",
-      a: "No, local anesthesia makes the procedure comfortable."
-    },
-    {
-      q: "How long is recovery?",
-      a: "Recovery usually takes 7–10 days."
-    },
-    {
-      q: "When will I see results?",
-      a: "Visible results start from 3 months."
-    },
-    {
-      q: "Do you offer EMI?",
-      a: "Yes, flexible EMI options are available."
-    }
-  ].map((item, i) => (
-
-    <div key={i} style={{
-      borderBottom: "1px solid #eee",
-      padding: "20px 0"
-    }}>
-
-      QUESTION
-      <div 
-        onClick={() => setOpenFAQ(openFAQ === i ? null : i)}
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          cursor: "pointer"
-        }}
-      >
-
-        <span style={{ fontWeight: "500" }}>
-          {item.q}
-        </span>
-
-        <span style={{
-          transition: "0.3s",
-          transform: openFAQ === i ? "rotate(180deg)" : "rotate(0deg)"
-        }}>
-          ▼
-        </span>
-
-      </div>
-
-      ANSWER
-      <div style={{
-        maxHeight: openFAQ === i ? "200px" : "0px",
-        overflow: "hidden",
-        transition: "all 0.4s ease",
-        color: "#666",
-        marginTop: openFAQ === i ? "10px" : "0"
-      }}>
-        {item.a}
-      </div>
-
-    </div>
-
-  ))}
-
-</div>
-
-  </div>
-
-</section> */}
 <section style={{
   padding: "100px 5%",
   background: "#fcfaf9", // Consistent warmer background
@@ -1699,7 +1293,7 @@ export default function LandingPage() {
 </section>
 
       {/* Footer */}
-      <footer style={{ background: "#111", color: "#888", padding: "56px 5% 32px" }}>
+<footer style={{ background: "#111", color: "#888", padding: "56px 5% 32px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "40px", marginBottom: "48px" }}>
             <div>
@@ -1723,7 +1317,7 @@ export default function LandingPage() {
             © 2024 HairX. All rights reserved. Products regulated by MHRA. *Free delivery on subscription plans.
           </div>
         </div>
-      </footer>
+</footer>
     </div>
   );
 }
